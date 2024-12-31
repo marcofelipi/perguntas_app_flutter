@@ -2,6 +2,7 @@
 Estudos de Flutter com um app básico de quiz, visando entender os conceitos de widgets.
 
 ![alt text](assets/image.png)
+![alt text](assets/img2.png)
 
 ## criar a aplicação
 
@@ -14,3 +15,8 @@ Estudos de Flutter com um app básico de quiz, visando entender os conceitos de 
                 Scaffold (estrutura principal)
                     AppBar(exibe o cabeçalho)
                     body(corpo da página)
+
+
+## observações
+
+usar _: trata como privado
