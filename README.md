@@ -3,6 +3,7 @@ Estudos de Flutter com um app básico de quiz, visando entender os conceitos de 
 
 ![alt text](assets/image.png)
 ![alt text](assets/img2.png)
+![alt text](assets/img3.png)
 
 ## criar a aplicação
 
