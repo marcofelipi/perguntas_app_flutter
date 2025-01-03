@@ -13,22 +13,38 @@ class _PerguntaAppState extends State<PerguntaApp> {
     });
   }
 
+  final _perguntas = const [
+    {
+      'texto': 'Qual é a sua cor favorita?',
+      'respostas': ['Preto', 'Vermelho', 'Azul', 'Verde'],
+    },
+    {
+      'texto': 'Qual é o seu animal favorito?',
+      'respostas': ['Leão', 'Coelho', 'Tartaruga', 'Sapo'],
+    },
+    {
+      'texto': 'Qual é o seu time?',
+      'respostas': ['Grêmio', 'Inter', 'Juventude', 'Caxias'],
+    },
+  ];
+
+  bool get temPerguntaSelecionada {
+    return _perguntaSelecionada < _perguntas.length;
+  }
+
   @override
   Widget build(BuildContext context) {
-    final perguntas = [
-      {
-        'texto': 'Qual é a sua cor favorita?',
-        'respostas': ['Preto', 'Vermelho', 'Azul', 'Verde'],
-      },
-      {
-        'texto': 'Qual é o seu animal favorito?',
-        'respostas': ['Leão', 'Coelho', 'Tartaruga', 'Sapo'],
-      },
-      {
-        'texto': 'Qual é o seu time?',
-        'respostas': ['Grêmio', 'Inter', 'Juventude', 'Caxias'],
-      },
-    ];
+    List<String>? respostas = temPerguntaSelecionada
+        ? (_perguntas[_perguntaSelecionada]['respostas'] as List<dynamic>)
+            .cast<String>()
+        : []; //if ? perguntas selecionadas... else : [] que é null
+    List<Widget> widgets =
+        respostas.map((t) => Resposta(t, _responder)).toList();
+
+    // for (String textoResp)
+    //     in perguntas[_perguntaSelecionada].cast()['widgets']) {
+    //   widgets.add(Resposta(textoResp, _responder));
+    // }
 
     return MaterialApp(
       home: Scaffold(
@@ -41,11 +57,9 @@ class _PerguntaAppState extends State<PerguntaApp> {
         ),
         body: Column(
           children: <Widget>[
-            Questao(perguntas[_perguntaSelecionada]['texto']?.toString() ??
+            Questao(_perguntas[_perguntaSelecionada]['texto']?.toString() ??
                 'Pergunta desconhecida'),
-            Resposta('Resposta 1', _responder),
-            Resposta('Resposta 2', _responder),
-            Resposta('Resposta 3', _responder),
+            ...respostas.map((t) => Resposta(t, _responder)).toList(),
           ],
         ),
       ),
